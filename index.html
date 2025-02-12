@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>whats up gamers</h1>
+<p>I'm pizz4ninja ;w;</p>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Insult Generator</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0; /* Remove default body margin */
+        }
+
+        .card {
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            text-align: center;
+            max-width: 500px; /* Limit card width */
+            width: 90%; /* Responsive width */
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-style: italic;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 10px; /* Add margin to the top */
+            cursor: pointer;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const insults = [
+            "You smell like soup.",
+            "Your face looks like it forgot what it was doing halfway.",
+            "You blink like you’re trying to send Morse code.",
+            // ... (rest of your insults array)
+        ];
+
+        const getRandomInsult = () => insults[Math.floor(Math.random() * insults.length)];
+
+        function RandomInsultGenerator() {
+            const [currentInsult, setCurrentInsult] = React.useState(getRandomInsult());
+
+            const handleGenerate = () => {
+                let newInsult;
+                do {
+                    newInsult = getRandomInsult();
+                } while (newInsult === currentInsult);
+                setCurrentInsult(newInsult);
+            };
+
+            return (
+                <div className="card">
+                    <h1>Random Insult Generator</h1>
+                    <p>"{currentInsult}"</p>
+                    <button className="button" onClick={handleGenerate}>Generate New Insult</button>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<RandomInsultGenerator />);
+    </script>
+
+</body>
+</html>
